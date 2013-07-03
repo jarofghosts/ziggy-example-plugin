@@ -1,0 +1,25 @@
+{
+  "name": "ziggy-example-plugin",
+  "version": "0.0.0",
+  "description": "this is how plugins work for ziggy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jarofghosts/ziggy-example-plugin.git"
+  },
+  "keywords": [
+    "ziggy",
+    "irc",
+    "bot",
+    "plugin",
+    "example"
+  ],
+  "author": "jesse keane",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jarofghosts/ziggy-example-plugin/issues"
+  }
+}
