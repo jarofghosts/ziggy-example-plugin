@@ -18,7 +18,7 @@ module.exports = function (ziggy) {
         bits[1] && bits[2] && ziggy.say(bits[1], text.substring(bits[1].length + 6));
         break;
       case '!me':
-        bits[1] && bits[2] && ziggy.action(bits[1], '/me ' + text.substring(bits[1].length + 5));
+        bits[1] && bits[2] && ziggy.action(bits[1], text.substring(bits[1].length + 5));
         break;
       case '!deop':
         if (!user.info.userLevel > 2) return ziggy.say(user.nick, 'Cut it out.');
