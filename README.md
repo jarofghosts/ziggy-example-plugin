@@ -7,7 +7,7 @@ browse through the source if you're interested in how to make a plugin for [zigg
 ```js
 var ziggy = require('ziggy'),
     plugin = require('ziggy-example-plugin'),
-    bot = ziggy.createZiggy({ plugins: [plugin] });
+    bot = ziggy.createZiggy({ plugins: [plugin] })
 ```
 
 .. you're done.
