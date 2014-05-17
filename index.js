@@ -2,17 +2,18 @@ module.exports = function (ziggy) {
   ziggy.on('authed', function (user) {
     ziggy.say(user.nick, 'You\'re authorized! Go hog wild!');
   })
+
   ziggy.on('pm', function (user, text) {
-    var bits = text.split(' '),
-        command = bits[0]
+    var bits = text.split(' ')
+      , command = bits[0]
 
-    if (command.substring(0, 1) != '!') return
+    if(command[0] !== '!') return
 
-    if (!user.info.authenticated) {
+    if(!user.info.authenticated) {
       return ziggy.say(user.nick, 'You\'re not authorized. Bummer :(')
     }
 
-    switch (command) {
+    switch(command) {
       case '!join':
         bits[1] && ziggy.join(bits[1])
         break
@@ -23,22 +24,24 @@ module.exports = function (ziggy) {
 
       case '!say':
         bits[1] && bits[2] && ziggy.say(
-          bits[1], text.substring(bits[1].length + 6)
+            bits[1]
+          , bits.slice(2).join(' ')
         )
         break
 
       case '!me':
         bits[1] && bits[2] && ziggy.action(
-          bits[1], text.substring(bits[1].length + 5)
+            bits[1]
+          , bits.slice(2).join(' ')
         )
         break
 
       case '!deop':
-        if (user.info.userLevel < 3) return ziggy.say(user.nick, 'Cut it out.')
-        if (bits.length < 3) {
+        if(user.info.userLevel < 3) return ziggy.say(user.nick, 'Cut it out.')
+        if(bits.length < 3) {
           return ziggy.say(user.nick, 'usage: !deop <channel> <nick>')
         }
-        if (ziggy.level(bits[1]) !== '@') {
+        if(ziggy.level(bits[1]) !== '@') {
           return ziggy.say(user.nick, 'how am i supposed to do that?')
         }
 
@@ -46,11 +49,11 @@ module.exports = function (ziggy) {
         break
 
       case '!op':
-        if (user.info.userLevel < 3) return ziggy.say(user.nick, 'Cut it out.')
-        if (bits.length < 3) {
+        if(user.info.userLevel < 3) return ziggy.say(user.nick, 'Cut it out.')
+        if(bits.length < 3) {
           return ziggy.say(user.nick, 'usage: !op <channel> <nick>')
         }
-        if (ziggy.level(bits[1]) !== '@') {
+        if(ziggy.level(bits[1]) !== '@') {
           return ziggy.say(user.nick, 'how am i supposed to do that?')
         }
 
@@ -65,7 +68,7 @@ module.exports = function (ziggy) {
         break
 
       case '!nick':
-        if (user.info.userLevel < 3) {
+        if(user.info.userLevel < 3) {
           return ziggy.say(user.nick, 'Jump back, punk!')
         }
 
@@ -73,15 +76,16 @@ module.exports = function (ziggy) {
         break
 
       case '!adduser':
-        if (user.info.userLevel < 3) {
+        if(user.info.userLevel < 3) {
           return ziggy.say(
               user.nick, 'Ah ah ah, you didn\'t say the magic word.'
           )
         }
-        if (!bits[1]) return ziggy.say(user.nick, 'Need a name, chief.')
+        if(!bits[1]) return ziggy.say(user.nick, 'Need a name, chief.')
 
-        var userName = bits[1],
-            userObject = {}
+        var userName = bits[1]
+          , userObject = {}
+
         userObject[userName] = {}
         userObject[userName].userLevel = bits[2] || 1
         ziggy.register(userObject)
@@ -89,17 +93,12 @@ module.exports = function (ziggy) {
         break
 
       case '!quit':
-        if (user.info.userLevel < 3) {
+        if(user.info.userLevel < 3) {
           return ziggy.say(user.nick, 'need more cred.')
         }
 
         var message = text.length > 6 ? text.substring(6) : 'G\'bye.'
         ziggy.disconnect(message)
-
-        break
-
-      default:
-        ziggy.say(user.nick, 'Unrecognized command. Try !help')
         break
     }
   })
