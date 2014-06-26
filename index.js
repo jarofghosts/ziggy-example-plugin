@@ -87,7 +87,7 @@ module.exports = function (ziggy) {
           , userObject = {}
 
         userObject[userName] = {}
-        userObject[userName].userLevel = bits[2] || 1
+        userObject[userName].userLevel = +bits[2] || 1
         ziggy.register(userObject)
 
         break
