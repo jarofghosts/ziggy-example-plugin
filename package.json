@@ -1,6 +1,6 @@
 {
   "name": "ziggy-example-plugin",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "this is how plugins work for ziggy",
   "main": "index.js",
   "scripts": {
